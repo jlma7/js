@@ -1,2 +1,0 @@
-# js
-just for js
