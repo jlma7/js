@@ -1,0 +1,61 @@
+= mysql base篇
+majingliang <majingliang7@163.com>
+v0.01, 2019-05-08:inner
+:doctype: docbook
+:toc: inner
+:toclevels: 4
+:numbered:
+
+
+
+== mac 版本
+=== install
+.Using Generic Binaries
+
+....
+wget mysql-VERSION.tar.gz
+sudo cp mysql-VERSION.tar.gz /usr/local/
+tar zxvf mysql-VERSION.tar.gz
+sudo ln -s mysql-VERSION/ mysql/
+export PATH=$PATH:/usr/local/mysql/bin
+....
+
+=== initialization
+....
+cd /usr/local/mysql
+bin/mysqld --initialize --user=mysql
+....
+
+ssl 命令
+....
+bin/mysql_ssl_rsa_setup
+....
+
+执行mysql_ssl_rsa_setup后，会在data目录下生成
+
+. ca.pem               Self-signed CA certificate
+. ca-key.pem           CA private key
+. server-cert.pem      Server certificate
+. server-key.pem       Server private key
+. client-cert.pem      Client certificate
+. client-key.pem       Client private key
+
+[NOTE]
+====
+.参数说明
+. basedir为mysql的安装目录
+. datadir为mysql的数据存储目录，建议在安装目录下
+. 使用 --initialize此处有mysql的root密码copy
+. 使用 --initialize没有密码
+====
+
+
+=== starting
+....
+sudo /usr/local/mysql/bin/mysqld_safe --user=mysql &
+....
+
+
+=== uninstall
+
+https://dev.mysql.com/doc/refman/8.0/en/source-installation.html[参考链接]
